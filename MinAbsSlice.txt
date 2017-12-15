@@ -1,0 +1,25 @@
+import java.util.Arrays;
+public class MinAbsSlice {
+    public static void main(String args[]) {
+        MinAbsSlice abs = new MinAbsSlice();
+        int[] A = {2,-4,6,-3,9};
+        System.out.println("Min Abs Sum is -->" + abs.solution(A));
+    }
+    public int solution(int[] A){
+        int size = A.length;
+        int start = 0;
+        int end = size -1;
+        Arrays.sort(A);
+        int minAbsSum = Math.abs(A[start]+A[end]);
+        while(start<=end){
+            int currentSum = A[start]+ A[end];
+            if(currentSum<=0){
+                start++;
+            } else{
+                end--;
+            }
+            minAbsSum = Math.min(minAbsSum,Math.abs(currentSum));
+        }
+        return minAbsSum;
+    }
+}

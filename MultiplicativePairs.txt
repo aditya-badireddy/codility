@@ -1,0 +1,42 @@
+import java.math.*;
+public class MultiplicativePairs {
+    public static void main(String args[]) {
+        MultiplicativePairs mulPairs = new MultiplicativePairs();
+        int[] A = {0,1,2,2,3,5};
+        int[] B = {500000,500000,0,0,0,20000};
+        System.out.println("Multiplicative Pairs Are -->" + mulPairs.solution(A,B));
+    }
+    public int solution(int[] A,int[] B){
+        int num =0;
+        int size = A.length;
+        double[] C = new double[size];
+        for(int i=0;i<size;i++){
+            C[i] = A[i]+ (double) B[i]/(double)1000000;
+        }
+        if(size<2){
+            return 0;
+        }
+        if(size<3){
+            if((BigDecimal.valueOf(C[0]).multiply(BigDecimal.valueOf(C[1])))
+					.compareTo(BigDecimal.valueOf(C[0]).add(
+							BigDecimal.valueOf(C[1]))) >= 0){
+							    return 1;
+							}
+							else{
+							    return 0;
+							}
+        }
+        for (int i = 1; i < size; i++) {
+			for (int j = i + 1; j < size; j++) {
+				if (C[i] * C[j] >= C[i] + C[j]) {
+				    System.out.println("pairs are ("+i+","+j+")");
+				    num++;
+				}
+			}
+        }
+        if(num>1000000000){
+            return 1000000000;
+        }
+        return num;
+    }
+}

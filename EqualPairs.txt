@@ -1,0 +1,27 @@
+public class EqualPairs {
+    public static void main(String args[]) {
+        EqualPairs pairs = new EqualPairs();
+        int[] A = {3,5,6,3,3,5};
+        int[] B = {1,1,1};
+        int[] C = {1,1,2,1,1,5};
+        int[] D = {1,2,2,1,1,2,5};
+        System.out.println("Duplicate Pair Count -->" + pairs.solution(A));
+        System.out.println("Duplicate Pair Count -->" + pairs.solution(B));
+        System.out.println("Duplicate Pair Count -->" + pairs.solution(C));
+        System.out.println("Duplicate Pair Count -->" + pairs.solution(D));
+    }
+    public int solution(int[] A){
+        int size = A.length;
+        int dupPairCnt = 0;
+        for(int i=0;i<size;i++){
+            int j=i+1;
+            while(j<size){
+                if(A[j]==A[i]){
+                    dupPairCnt++;
+                }
+                j++;
+            }
+        }
+        return dupPairCnt;
+    }
+}
